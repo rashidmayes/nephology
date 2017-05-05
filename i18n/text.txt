@@ -1,0 +1,68 @@
+site.title=Cloudvoyance
+text.about=About
+text.about.desc=The core platform is Java with the Aerospike NoSQL database, both deployed on Linux. The Java application uses the cloud provider's API to spin up instances from an image which contains the tools for inspecting and benchmarking the environment. On startup, the instances execute the tools, report the results, which are stored in Aerospike, and shutdown.
+index.heading=A Study of Cloud Computing
+index.tagline=Automated assessments of AWS, Google Compute Engine, and Azure instances
+index.description=We inspect and benchmark the leading cloud platforms to help organizations shorten and improve the decision making process for cloud deployment options.
+desc.hardware=Machine specifications including storage devices, CPUs, memory, and network devices are collected and summarized.
+desc.env=Details are collected for the OS and configured packages, as well as the runtime operating environment.
+desc.perf=CPU, storage, and network performance are measured to provide insights to the real-world instance performance.
+
+index.action=Explore
+text.alltests=Result Database
+text.performance=Performance
+text.hardware=Hardware
+text.software=Software
+
+text.yesterday=Yesterday
+text.tomorrow=Tomorrow
+text.lessthanoneminuteago=less than 1 minute ago
+text.daysago=days ago
+text.daysfromnow=days from now
+text.minutesfromnow=minutes from now
+text.minutesago=minutes ago
+text.hoursfromnow=hours from now
+text.hoursago=hours ago
+text.today=Today
+
+text.tests=Tests
+text.hours=Hours
+
+text.cpucount=CPU(s)
+text.driveCount=Drive(s)
+text.memory=DRAM
+
+text.tested=Over {0} Tests Cataloged
+text.testeddesc=Each instance goes through several checks and tests that include benchmarking the network, storage, CPU, and Java performance as well listing system configuration and operating details.
+
+text.posttitle=%s Run #%s: Results for %s Performance and Environment Tests
+text.postbody.0.0=The table below reflects the actual observed CPU, memory, and number of drives available. According to %s, the %s has %s CPUs, %s RAM, and %s drives. During our test, we found the instance to have %s CPUs, %s RAM, and %s drives.
+text.postbody.0.1=%s minutes were consumed executing the %s tests, %s tests failed to complete. The test results are summarized in the table below.
+text.overview=overview
+text.astested=As Tested
+
+text.starttime=Start Time
+text.endTime=End Time
+text.status=Status
+text.statuscode=Status Code
+text.outputype=Output Type
+text.outputlength=Output Length
+
+index.testedinstances=Tested Instances
+index.testedinstances.desc=All scores presented below are presented as averages over the total number of tests for an instance. Network scores are presented in Mbps and JMH scores are in millions.
+
+index.specifications=Specifications
+index.specifications.desc=The specifications reflect the cloud providers listed specs and not the observed specs. View a test to see the actual specs observed
+
+index.comparison=Comparison
+index.comparison.desc=The charts below detail how this instance type compares to the top scoring instances by test.
+
+index.tests=Tests
+index.instancetests.desc=The testing process is completely automated. Network scores are presented in Mbps and JMH scores are in millions.
+
+text.team=Team
+team.description=We are a team of passionate technology professionals with deep experience in enterprise cloud deployments.
+
+text.recenttests=Recent Tests
+text.bestandworst=Best and Worst Performers
+text.bestandworst.desc=Each instance type is continuously tested. The best and worst scores for each indiviual test are listed.
