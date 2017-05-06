@@ -22,12 +22,12 @@ function inspect {
 lsblk -o NAME,TYPE | grep disk | grep -v '^sda\|^xvda\|^fd' | while read name type
 do 
     echo ioping -s 131072 -c 10 /dev/$name
-    sudo /usr/local/bin/ioping -s 131072 -c 10 /dev/$name
+    sudo ioping -s 131072 -c 10 /dev/$name
     echo
     
     
     echo ioping -s 131072 -c 10 -D /dev/$name O_DIRECT
-    sudo /usr/local/bin/ioping -s 131072 -c 10 -D /dev/$name
+    sudo ioping -s 131072 -c 10 -D /dev/$name
     echo
 
     echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randwrite --bs=128k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --refill_buffers --norandommap --randrepeat=0 --group_reporting
