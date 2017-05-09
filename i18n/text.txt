@@ -64,5 +64,5 @@ text.team=Team
 team.description=We are a team of passionate technology professionals with deep experience in enterprise cloud deployments.
 
 text.recenttests=Recent Tests
-text.bestandworst=Best and Worst Performers
+text.bestandworst=Best Performers
 text.bestandworst.desc=Each instance type is continuously tested. The best and worst scores for each indiviual test are listed.
