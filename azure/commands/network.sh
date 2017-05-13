@@ -52,12 +52,16 @@ echo ping -c 10 google.com
 ping -c 10 google.com
 echo
 
-echo traceroute google.com
-traceroute google.com
+echo ping -c 10 microsoft.com
+ping -c 10 microsoft.com
 echo
 
-echo traceroute amazon.com
-traceroute amazon.com
+#echo traceroute google.com
+#traceroute google.com
+#echo
+
+#echo traceroute amazon.com
+#traceroute amazon.com
 }
 
 
