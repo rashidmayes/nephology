@@ -10,7 +10,7 @@ STATUS_CODE=0
 SCORE=1
 SCORE_EXPLANATION="The score represents the sum total of all iops for all devices."
 START_TIME=$(expr `date +%s` \* 1000)
-
+ROOT_VOLUME=$(lsblk -no pkname `findmnt / -no source`)
 
 #################################################################
 #
@@ -19,7 +19,7 @@ START_TIME=$(expr `date +%s` \* 1000)
 #################################################################
 function inspect {
 
-lsblk -o NAME,TYPE | grep disk | grep -v '^sda\|^xvda' | while read name type
+lsblk -o NAME,TYPE | grep disk | grep -v '^sda\|^xvda\|^$ROOT_VOLUME' | while read name type
 do 
     echo ioping -s 131072 -c 10 /dev/$name
     sudo /usr/local/bin/ioping -s 131072 -c 10 /dev/$name
@@ -30,14 +30,14 @@ do
     sudo /usr/local/bin/ioping -s 131072 -c 10 -D /dev/$name
     echo
 
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randwrite --bs=128k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --refill_buffers --norandommap --randrepeat=0 --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randwrite --bs=128k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --refill_buffers --norandommap --randrepeat=0 --group_reporting
+    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
     echo
     
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randwrite --bs=128k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50 --refill_buffers --norandommap --randrepeat=0 --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randwrite --bs=128k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50 --refill_buffers --norandommap --randrepeat=0 --group_reporting
+    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50  --norandommap --group_reporting
     echo
 done
 }
