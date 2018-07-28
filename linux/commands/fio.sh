@@ -30,14 +30,14 @@ do
     sudo /usr/local/bin/ioping -s 131072 -c 10 -D /dev/$name
     echo
 
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
+    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     echo
     
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50 --norandommap --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  -rwmixwrite=50  --norandommap --group_reporting
+    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50  --norandommap --group_reporting
     echo
 done
 }
