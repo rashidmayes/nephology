@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ax
+
 NAME=$1
 ID=$1
 OUTPUT_FILE=$2
