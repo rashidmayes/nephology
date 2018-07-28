@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ax
 NAME=$1
 ID=$1
 OUTPUT_FILE=$2
@@ -30,14 +30,14 @@ do
     sudo /usr/local/bin/ioping -s 131072 -c 10 -D /dev/$name
     echo
 
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
+    #sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randrw --bs=4k --direct=0 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     echo
     
-    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
+    echo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50 --norandommap --group_reporting
     
-    sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=64 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50  --norandommap --group_reporting
+    #sudo fio --filename=/dev/$name --name=randwrite --ioengine=libaio --iodepth=16 --rw=randrw --bs=4k --direct=1 --numjobs=1 --runtime=60  --rwmixwrite=50  --norandommap --group_reporting
     echo
 done
 }
@@ -45,7 +45,7 @@ done
 function test {
 raw=$(inspect)
 OUTPUT=$(base64 -w0<<<"$raw")
-SCORE=$(awk '/^  write:/ { split($4,iops,"="); sum+=strtonum(iops[2]); } END { print sum/2 }'<<<"$raw")
+#SCORE=$(awk '/^  write:/ { split($4,iops,"="); sum+=strtonum(iops[2]); } END { print sum/2 }'<<<"$raw")
 OUTPUT_LEN=${#raw}
 }
 
