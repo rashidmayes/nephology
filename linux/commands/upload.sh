@@ -18,7 +18,7 @@ START_TIME=$(expr `date +%s` \* 1000)
 #
 #################################################################
 function test {
-raw=$(/usr/local/bin/speedtest --json --no-download | awk 'NR > 1 { print $0 }' | python -m json.tool)
+raw=$(/usr/local/bin/speedtest --json --no-download | python -m json.tool)
 SCORE=$(python -c 'import json,sys; print(json.loads(sys.stdin.read())["upload"])'<<<"$raw")
 OUTPUT=$(base64 -w0<<<"$raw")
 OUTPUT_LEN=${#raw}
