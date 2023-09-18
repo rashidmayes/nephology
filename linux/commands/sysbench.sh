@@ -18,8 +18,8 @@ START_TIME=$(expr `date +%s` \* 1000)
 #
 #################################################################
 function test {
-raw=$(sysbench --test=cpu --threads=8 --histogram=on --time=60  --cpu-max-prime=20000 run)
-SCORE=$(awk '/total time:/ { time=strtonum($3); } /total number of events/ { events=$5 }END { print events/time }'<<<"$raw")
+raw=$(sysbench cpu --threads=8 --histogram=on --time=60  --cpu-max-prime=20000 run)
+SCORE=$(awk '/\(eps\):/ { rate=$3; } END { print rate }'<<<"$raw")
 OUTPUT=$(base64 -w0<<<"$raw")
 OUTPUT_LEN=${#raw}
 }
