@@ -45,7 +45,8 @@ done
 function test {
 raw=$(inspect)
 OUTPUT=$(base64 -w0<<<"$raw")
-SCORE=$(awk '/^  write:/ { split($4,iops,"="); sum+=strtonum(iops[2]); } END { print sum/2 }'<<<"$raw")
+#SCORE=$(awk '/^  write:/ { split($4,iops,"="); sum+=strtonum(iops[2]); } END { print sum/2 }'<<<"$raw")
+SCORE=$(awk '/^  write:/ { split($2,iops,"="); print iops[2]  }'<<<"$raw" | tr -d ',' | tr '[:lower:]' '[:upper:]' | numfmt --from=auto | awk '{ sum+=strtonum($1); } END { print sum/2 }')
 OUTPUT_LEN=${#raw}
 }
 
