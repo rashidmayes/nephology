@@ -26,6 +26,7 @@ function createPreamble {
 #CPU_COUNT=`lscpu | awk '/^CPU\(s\)/ { print $2; }'`
 CPU_COUNT=`nproc`
 CPU_SPEED=`lscpu | awk  '/^CPU MHz/ { print $3; }'`
+[ -z $CPU_SPEED ] && CPU_SPEED=`sudo dmidecode -t processor | awk '/Max Speed/ { print $3; }' | sort -u | head -1`
 MEMORY=`free -b | awk '/Mem/ { print $2 }'`
 DRIVE_DETAILS=(`lsblk -bl -o SIZE,TYPE | awk '/disk/ {sum += $1; count += 1;} END {print sum " " count}'`)
     
